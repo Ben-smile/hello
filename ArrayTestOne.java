@@ -1,4 +1,4 @@
-//输出0-100之间的奇数
+输出0-100之间的奇数
 /*
 public class ArrayTestOne{
 	public static void main(String[] args){
