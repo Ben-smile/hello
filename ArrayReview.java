@@ -1,4 +1,4 @@
-/*
+
 public class ArrayReview{
 	//6.给定一个数组a{1,2,3,9,4,5} 按照数组中的最大值位置 将数组拆分成两个{1,2,3} {4,5}
 	public static void main(String[] args){
@@ -34,7 +34,7 @@ public class ArrayReview{
 		}
 	}
 }
-*/
+
 //给定两个数组a{1,2,3}  b{4,5} 合并两个数组 (创建一个新的数组5长度)
 public class ArrayReview{
 	
