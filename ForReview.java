@@ -33,10 +33,10 @@ public class ForReview{
 		}*/
 	}
 }
-
+//打印输出9*9乘法表
 public class ForReview{
 	public static void main(String[] args){
-		//打印输出9*9乘法表
+	
 		//   j  + "*" +   i + "=" +     j*i
 		//被乘数  *  乘数  =  乘积
 		for(int i=1;i<=9;i++){//控制行数
