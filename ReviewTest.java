@@ -50,6 +50,7 @@ public class ReviewTest{
 		default:
 			System.out.println("error");
 			break;
-		}*/
+		}
+		*/
 	}
 }
