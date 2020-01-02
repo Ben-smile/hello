@@ -1,8 +1,6 @@
 
-import java.util.Scanner;
-
 //寻找三位数字的水仙花数 方法一
-// public class ForDemoTwo{
+ public class ReviewTest1{
 //     public static void main(String[] args) {
 //         for (int a = 0 ; a <= 9;a++){
 //             for (int b = 0; b <= 9;b++){
@@ -16,7 +14,7 @@ import java.util.Scanner;
 // }
 
 //方法二
-// public class ForDemoTwo{
+// public class ReviewTest1{
 //     public static void main(String[] args){
 //         int num = 100;
 //         for (;num<1000;num++){
@@ -30,7 +28,7 @@ import java.util.Scanner;
 //     }
 // }
 //使用 Math.pow(double a,double b)来计算
-// public class ForDemoTwo{
+// public class ReviewTest1{
 //     public static void main(String[] args){
 //        //Math.pow(double a,double b);帮我们计算a的b次方
 //         for ( int num = 100;num<1000;num++){
@@ -42,34 +40,3 @@ import java.util.Scanner;
 //     }
 // }
 
-public class ReviewTest{
-	public static void main(String[] args){
-		
-		switch(day){
-		case 1:
-			System.out.println("monday");
-			break;
-		case 2:
-			System.out.println("tuesday");
-			break;
-		case 3:
-			System.out.println("wednesday");
-			break;
-		case 4:
-			System.out.println("thursday");
-			break;
-		case 5:
-			System.out.println("friday");
-			break;
-		case 6:
-			System.out.println("saturday");
-			break;
-		case 7:
-			System.out.println("sunday");
-			break;
-		default:
-			System.out.println("error");
-			break;
-		}*/
-	}
-}
