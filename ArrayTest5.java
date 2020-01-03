@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 public class ArrayTest5 {
     public static void main(String[] args){
-       /* String[] accountBox = new String[]{"张三","李四","王五"};
+        String[] accountBox = new String[]{"张三","李四","王五"};
         int[] passwordBox = new int[]{123,666,999};
         Scanner input = new Scanner(System.in);
         System.out.println("请输入用户名");
@@ -22,7 +22,7 @@ public class ArrayTest5 {
         }
         if (a){
             System.out.println("用户名或密码错误");
-        }*/
+        }
 
     }
 }
