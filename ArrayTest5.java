@@ -1,5 +1,5 @@
 import java.sql.SQLOutput;
-//import java.util.Scanner;
+import java.util.Scanner;
 
 public class ArrayTest5 {
     public static void main(String[] args){
