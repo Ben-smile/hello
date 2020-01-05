@@ -20,7 +20,7 @@ public class ArrayTest5 {
                 break;
             }
         }
-        if (a){
+        if (a){      //  a 是true  !a是 false
             System.out.println("用户名或密码错误");
         }
 
