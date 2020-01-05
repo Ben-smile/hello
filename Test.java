@@ -3,9 +3,9 @@ import java.util.Arrays;
 public class Test {
     public static void main(String[] args) {
        int[] arr = new int[]{9,3,2,5,4,6};
-       //System.out.println(binarySearch(arr, 5)); //二分查找
-        // System.out.println(avg(arr)); //求数组平均数
-        bubbleSort(arr);  //冒泡排序
+       //System.out.println(binarySearch(arr, 5));  //二分查找
+        // System.out.println(avg(arr));     //求数组平均数
+        bubbleSort(arr);     //冒泡排序
         System.out.println(Arrays.toString(arr));
     }
 
