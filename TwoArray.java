@@ -9,7 +9,7 @@ public class TwoArray {
             System.out.println();
         }
         System.out.println("--------我是一条华丽的分割符-----");
-        for (int[]array:arr){//增强for  遍历二维数组
+        for (int[]array:arr){   //增强for  遍历二维数组
             for (int num:array){
                 System.out.print(num+"\t");
             }
