@@ -1,9 +1,6 @@
 package Ben.Test;
 
 public class Person {
-    public String name;
-    public int age;
-    public String sex;
    //设计一个方法  画星星 倒直角三角
     public void drawStar(int line,boolean direction){
         for (int i = 1;i <= line;i++ ){
