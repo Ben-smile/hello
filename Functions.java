@@ -1,5 +1,6 @@
 public class Functions {
-    //星星 倒直角三角
+    
+//星星 倒直角三角
     public void drawStar(int line,boolean direction){
         for (int i = 1;i <= line;i++ ){
             if (!direction) {
@@ -13,7 +14,7 @@ public class Functions {
             System.out.println();
         }
     }
-        //交换两个数组中的元素
+//交换两个数组中的元素
         public void changeArray (int[] a,int[] b){
             int[] tmp = new int[a.length];
             tmp = a;
