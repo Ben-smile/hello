@@ -28,7 +28,7 @@ public class Functions {
             }
             System.out.println();
         }
-        //交换一个数组中头尾的位置
+         //交换一个数组中头尾的位置
         public void exchangeArray (int[] arr){
             int left = 0;
             int bound = arr.length-1;
