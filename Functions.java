@@ -1,5 +1,5 @@
 public class Functions {
-    //星星 倒直角三角
+     //星星 倒直角三角
     public void drawStar(int line,boolean direction){
         for (int i = 1;i <= line;i++ ){
             if (!direction) {
