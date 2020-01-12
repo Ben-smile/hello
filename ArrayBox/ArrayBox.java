@@ -2,7 +2,7 @@ public class ArrayBox {
     public int[] elementData = new int[10];
     public int size = 0;
 
-    public void add (int num){  //用户调用的储存方法
+    public void add (int num){   //用户调用的储存方法
         this.judgeCapacity(size+1);
         elementData[size++] = num;
     }
