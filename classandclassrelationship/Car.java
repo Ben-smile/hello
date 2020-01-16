@@ -1,9 +1,9 @@
 package classandclassrelationship;
 
 public class Car {
-    //小汽车的属性 速度
+      //小汽车的属性 速度
     private int speed;
-    //创建构造方法
+     //创建构造方法
     public Car (int speed){
         this.speed = speed;
     }
