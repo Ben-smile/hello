@@ -7,7 +7,7 @@ public class Test {
         }
 
     }
-//二分法查找
+    //二分法查找
     public static int binarySearch (int[] arr,int toFind){
         int left = 0;
         int right = arr.length-1;
