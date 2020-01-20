@@ -2,14 +2,14 @@ package util;
 
 public class ArrayBox implements Box{
 
-    //设计一个静态常量 用来存储数组的默认长度
+     //设计一个静态常量 用来存储数组的默认长度
     private static final int DEFAULT_CAPACITY = 10;
     //设计一个自己的属性  用来存放真实数据的  []
     private int[] elementDate;
     //设计一个自己的属性  用来记录数组内存储的有效元素个数
     private int size = 0;
 
-    //构造方法重载
+     //构造方法重载
     public ArrayBox(){
         elementDate = new int[DEFAULT_CAPACITY];
     }
