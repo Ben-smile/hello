@@ -18,7 +18,7 @@ public class MainTest {
         int value3=l.get(2);
         int value4=l.get(4);
         int size = l.size();
-        System.out.println(value1+" "+value2+" "+value3+" "+value4);
+        System.out.println(value1+"  "+value2+" "+value3+" "+value4);
         System.out.println(size);
     }
 
