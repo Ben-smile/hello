@@ -11,7 +11,7 @@ public class MainTest {
         l.add(30);
         l.add(40);
         l.add(50);
-
+ 
         l.remove(1);
         int value1=l.get(0);
         int value2=l.get(1);
