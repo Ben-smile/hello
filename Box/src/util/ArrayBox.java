@@ -16,7 +16,7 @@ public class ArrayBox implements Box{
 //-----------------------------------------------------
     private void ensureCapacity (int minCapacity){
         if (minCapacity > element.length){
-            //如果需要的最小容量比数组长度大  扩容
+             //如果需要的最小容量比数组长度大  扩容
             this.grow(minCapacity);
         }
     }
