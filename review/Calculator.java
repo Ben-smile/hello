@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Calculator {     //计算器  类
+public class Calculator {       //计算器  类
     public float subtract (float one,float two){ //减
         return one - two;
     }
