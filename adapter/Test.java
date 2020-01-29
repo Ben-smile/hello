@@ -1,26 +1,16 @@
 package adapter;
 
-public class Test {
+public class Test extends Adapter{
+    //现在子类可以自行挑选接口进行实现 不用实现所有的接口
+    public  int remove (){
+        return 1;
+    };
+    public  boolean add(){
+        return true;
+    };
+    public  int size (){
+        return 1;
+    };
 
-    public static int binarySearch (int[] arr,int toFind){
-        int left = 0;
-        int right = arr.length-1;
-        while (left <= right){
-            int mid = (left + right)>>1;
-            if (arr[mid]>toFind){
-                left = mid +1;
-            }else if(arr[mid]<toFind){
-                right = mid -1;
-            }else{
-                return mid;
-            }
-        }
-        return -1;
-    }
-    public static void main(String[] args){
-//        BinarySearch b = new BinarySearch();
-        int[] array = new int[]{1,2,3,4,5,6,7};
-        int value = binarySearch(array,5);
-        System.out.println(value);
-    }
+
 }
