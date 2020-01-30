@@ -1,7 +1,24 @@
 package util;
 
 public class LinkedBox implements Box { //实现Box 接口
+     
+     private class Node {//创建一个Node类作为LinkedBox的内部类 每一个结点都是一个Node类型的对象
+           //Node类属性 有 1.上一个Node对象的引用
+                                         2.当前Node对象存入的值
+		    3.下一个Node对象的引用
+          private Node previous;
+          private Node next;
+          private int item;
 
+          private Node (){}
+          private Node (Node previous,int element,Node next){
+          this.item = element;
+          this.next = next;
+          this.previous = previous;
+    }
+     //linkedBox的属性 1.头结点
+		  2.尾节点
+		  3.链表的长度size
     private Node first;
     private Node last;
     private int  size;
