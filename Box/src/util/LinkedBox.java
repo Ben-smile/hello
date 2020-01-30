@@ -19,7 +19,7 @@ public class LinkedBox implements Box { //实现Box 接口
         }
         size++;
     }
-
+     //检查index 的范围是否合法
     private void rangeCheck (int index){
         if (index <0 || index>=size){
            throw new BoxIndexOutOfBoundsException("size:"+size+"index:"+index);
@@ -34,7 +34,7 @@ public class LinkedBox implements Box { //实现Box 接口
             for (int i = 0;i<index;i++){
                 targetNode= targetNode.next;
             }
-        }else {
+        }else {     //否则就从last开始找
             targetNode = last;
             for (int i = size-1;i>index;i--){
                 targetNode= targetNode.previous;
@@ -47,31 +47,37 @@ public class LinkedBox implements Box { //实现Box 接口
         int oldValue = targetNode.item;
         Node prev = targetNode.previous;
         Node next = targetNode.next;
-        if (prev == null){
-            next = first;
-        }else{
-            prev.next = next;
-            targetNode.previous = null;
+        if (prev == null){    //此时targetNode是头结点
+            next = first;   
+        }else{   //说明当前Node对象的前面还有Node对象
+            prev.next = next; 
+            targetNode.previous = null;  //help GC
         }
-        if (next == null){
+        if (next == null){  //此时是尾节点
             prev = last;
-        }else{
+        }else{  //说明当前Node对象的后面还有Node对象
             next.previous = prev;
-            targetNode.next = null;
+            targetNode.next = null;   //help GC
         }
+        targetNode.item = null;  //help GC
         return oldValue;
     }
   //---------------------------------------------------------
     public boolean add(int element) {
+        //调用连接尾节点的方法
         this.linkLast(element);
         return true;
     }
 
 
     public int remove(int index) {
+         //1.先检查index 的范围
         this.rangeCheck(index);
+         //2.获取index对应的Node对象
         Node targetNode =this.findNode(index);
+         //3.删除Node结点并返回删除的值
         int value = this.unlink(targetNode);
+         //4.让size长度减一
         size--;
         return value;
     }
