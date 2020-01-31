@@ -6,7 +6,7 @@ public class Toff extends Person{
     public Toff(String name){
         this.name=name;
     }
-    //1.进银行 叫一个号码 排队
+     //1.进银行 叫一个号码 排队
     public void callNumber(){
         System.out.println("我是土豪我有钱 不需要叫号排队 直接进入VIP窗口");
     }
