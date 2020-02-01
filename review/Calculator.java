@@ -37,7 +37,7 @@ public class Calculator {        //计算器  类
             switch (symbol) {   //根据 符号调用不同的计算方法
                 case "+":
                     a = this.add(a, b);     //将每次计算的值 再次的存入 a 中,保证第二次
-                                            // 计算的第一个值 是上次的算的结果
+                                                        // 计算的第一个值 是上次的算的结果
                     break;
                 case "-":
                     a = this.subtract(a, b);
