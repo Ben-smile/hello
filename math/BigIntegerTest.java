@@ -11,7 +11,7 @@ public class BigIntegerTest {
         //构造方法都是带参数的 我们通常利用 带String 参数的构造方法创建对象
         //大整数  理论上能够表示无限大的数 只要内存足够
         BigInteger bi = new BigInteger("123");
-        //常用方法  用来做四则运算 返回值类型为 BigInteger类型
+        //常用方法  用来做四则运算  返回值类型为 BigInteger类型
         bi.add(bi);//加
         bi.subtract(bi);//减
         bi.multiply(bi);//乘
