@@ -12,6 +12,5 @@ public class DecimalFormatTest {
         String value = df.format(12.4556);
         //若超过规定的位数 四舍五入 不够会添加0
         System.out.println(value);//012.456
-
-    }
+        }
 }
