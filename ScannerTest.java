@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class ScannerTest {
     //1.所属的包java.util包  需要import导包
-	//2.通过一个带输入流的构造方法创建对象(System.in)
+    //2.通过一个带输入流的构造方法创建对象(System.in)
     public static void main(String[] args){
         Scanner input = new Scanner(System.in);
         input.nextLine(); //以回车符作为结束 并且读取掉回车符并扔掉
