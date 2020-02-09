@@ -3,7 +3,7 @@ package string;
 public class StringTest {
     public static void main(String[] args){
      //1.String类 属于 java.lang包
-          //无任何的继承关系 实现了三个接口 Serializable,CharSequence,Comparable<String>
+        //无任何的继承关系 实现了三个接口 Serializable,CharSequence,Comparable<String>
 
      //2.创建对象
      //   String str1 = "abc"; //直接将字符串常量赋值给str (字符串常量池)
@@ -100,6 +100,62 @@ equals()  和 == 的区别
         /*9.startWith(String prefix)
             endWith(String suffix);
             判断此字符串是否以 xx 开头/结束
+         */
+       // String str = "abcdefg";
+        //System.out.println(str.endsWith("g")); //true
+        //System.out.println(str.startsWith("ab"));//true
+        /*10.   byte[] = getBytes();
+                char[] = toCharArray();
+                将当前的字符串转化成数组  "我爱你中国"-->char[] {'我' '爱' '你' '中' '国'}
+         */
+
+        /*11.  int = indexOf(int/String str,[int fromIndex]); 四个方法重载
+               找寻给定元素在字符串第一次出现的位置   若不存在返回-1
+               int fromIndex 代表从哪里开始找
+
+               int = lastIndexOf(int/String str,[int fromIndex]);
+               找寻给定元素在字符串最后一次出现的位置  若不存在返回-1
+         */
+//        String str = "abcdef";
+//        int index = str.indexOf("d");
+//        System.out.println(index); //3
+
+        /*12. boolean = isEmpty();
+                判断当前字符串是否为空串 (length是否为0)
+                注意: 与null之间的区别
+         */
+
+        /*13.replace(); 两个方法重载
+        replaceAll(); 换全部的字串
+        replaceFirst();换第一次出现的字串
+                将给定的字符串替换成另外的字符串
+         */
+
+        //String str = "abcabcabc";
+        //str = str.replace("a","b");
+        //System.out.println(str);//bbcbbcbbc
+
+        /*14 String[] = split(String regex,[int limit限度界限]);
+            按照给定的表达式 将字符串拆分开来
+         */
+//        String str = "a-b-c-d";
+//        String[] a = str.split("-",2); limit表示拆成几段
+//        for (String value : a){
+//            System.out.println(value);
+//        }
+
+        /*15.String  = substring(int beginIndex[,int endIndex])
+                将当前字符串截取一段 从begin开始到 end结束
+                若不写endIndex 则默认到字符串结束
+         */
+
+        /*16.  String = toUpperCase()
+                String = toLowerCase()
+                将全部字符串转换成大写/小写
+         */
+
+        /*17.  String = trim();
+                去掉字符串前后多余的空格
          */
     }
 }
