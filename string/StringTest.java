@@ -3,7 +3,7 @@ package string;
 public class StringTest {
     public static void main(String[] args){
      //1.String类 属于 java.lang包
-        //无任何的继承关系 实现了三个接口 Serializable,CharSequence,Comparable<String>
+      //无任何的继承关系 实现了三个接口 Serializable,CharSequence,Comparable<String>
 
      //2.创建对象
      //   String str1 = "abc"; //直接将字符串常量赋值给str (字符串常量池)
