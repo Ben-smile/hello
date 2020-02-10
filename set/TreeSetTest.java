@@ -14,7 +14,7 @@ public class TreeSetTest {
 //          compareTo---->String类  按照字母的自然顺序排布(Unicode)
 //              如果想要把自己写的类型 比如Person对象存入TreeSet集合里
 //              不能随意的存储	需要让自己写的类先实现Comparable接口
-        //      否则会抛出异常 ClassCastException 造型异常
+//              否则会抛出异常 ClassCastException 造型异常
         TreeSet<String> treeSet = new TreeSet();
         treeSet.add(new String("张三"));
         treeSet.add(new String("张三"));
