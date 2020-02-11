@@ -7,9 +7,9 @@ public class TreeSetTest {
 //        1.无序无重复  java.util
 //        2.无参数构造方法    带Collection构造方法
 //        3.基本常用方法
-//          add(E e)  iterator()  remove(E e)  没有修改  size()
+//              add(E e)  iterator()  remove(E e)  没有修改  size()
 //        4.无重复的规则是如何实现的
-//          treeSet集合本身有顺序
+//              treeSet集合本身有顺序
 //              我们指的无序存入的和取出来的不一致
 //          compareTo---->String类  按照字母的自然顺序排布(Unicode)
 //              如果想要把自己写的类型 比如Person对象存入TreeSet集合里
