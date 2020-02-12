@@ -15,7 +15,7 @@ public class Test {
         System.out.println("请输入密码:");
         String password = input.nextLine();
         if (e.judge(name,password)){
-            System.out.println("登录成功 开始考试");
+            System.out.println("登录成功  开始考试");
             ArrayList<Question> paper =e.getExamPaper();
             String[] realAnswer = student.doExam(paper);
             Teacher t = new Teacher();
