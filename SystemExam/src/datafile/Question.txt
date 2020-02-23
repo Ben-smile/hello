@@ -1,0 +1,17 @@
+以下哪个是Java的基本数据类型?<br>   A.String<br>   B.Integer<br>   C.boolean<br>   D.Math#C
+以下哪个是Java的引用数据类型?<br>   A.String<br>   B.int<br>   C.boolean<br>   D.char#A
+以下哪不是Object类中的方法?<br>   A.equals<br>   B.hashCode<br>   C.toString<br>   D.compareTo#D
+以下哪个不是String类中的方法?<br>   A.charAt<br>   B.reverse<br>   C.replace<br>   D.indexOf#B
+以下哪个是Java中非法标识符?<br>   A.variable<br>   B.variable2<br>   C.%variable<br>   D._variable#C
+以下哪个选项是用于编译Java文件的?<br>   A.javac<br>   B.java<br>   C.path<br>   D.classPath#A
+经过编译后形成的文件后缀名?<br>   A. .obj<br>   B. .exe<br>   C. .class<br>   D. .java#C
+未编译之前的源文件后缀名?<br>   A. .obj<br>   B. .exe<br>   C. .class<br>   D. .java#D
+下面哪个写法声明数组正确?<br>   A.int[] a = new int[10];<br>   B.float f = new float[10];<br>   C.char d[] = new char('d');<br>   D.byte[10] b = new byte[];#A
+下面哪个选项是key-value形式?<br>   A.ArrayList<br>   B.HashMap<br>   C.LinkedList<br>   D.Vector#B
+这个标志是何含义？<br>  A、此路不通<br>  B、T型路口<br>  C、分流路口<br>  D、减速通行#A#15.jpg
+遇有这种排队等候的情形怎么做？<br>   A、依次排队等候<br>   B、从右侧借道超越<br>   C、从左侧跨越实线超越<br>   D、从两 侧随意超越#A#14.jpg
+会车中遇到对方来车行进有困难需借道时，应怎样做？<br>   A、不侵占对方道路，正常行驶<br>   B、示意对方停车让行<br>   C、靠右侧加速行驶<br>   D、尽量礼让对方先行#D
+遇到这种情况的路口，以下做法正确的是什么？<br>   A、沿左侧车道掉头<br>   B、该路口不能掉头<br>   C、选择中间车道掉头<br>   D、在路口内掉头#B#29.jpg
+指路标志的作用是什么？<br>   A、限制车辆通行<br>   B、提示限速信息<br>   C、提供方向信息<br>   D、警告前方危险#D
+这个标志是何含义？<br>   A、立体交叉直行和右转弯行驶<br>   B、立体交叉直行和左转弯行驶<br>   C、直行和左转弯行驶<br>   D、直行和右转弯行驶#B#33.jpg
+37、这是什么踏板 ？<br>   A、加速踏板<br>   B、离合器踏板<br>   C、制动器踏板<br>   D、驻车制动器#B#
