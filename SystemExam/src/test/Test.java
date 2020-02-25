@@ -1,8 +1,6 @@
 package test;
 
 
-import domain.Question;
-import service.QuestionService;
 import view.LoginFrame;
 
 
