@@ -10,30 +10,56 @@ public class Test {
     }
 
     public ListNode removeElements(ListNode head, int val) {
-        if (head == null) {
-            // 空链表, 没的删
-            return null;
+
+
+        if(head == null){
+            return null; //空链表
         }
-        // 1. 先删除中间节点的情况(非头部的情况)
-        ListNode prev = head;  // prev 始终指向 cur 的前一个位置
+        ListNode prev = head;
         ListNode cur = head.next;
-        while (cur != null) {
+        while(cur != null) {
             if (cur.val == val) {
-                // 这个节点就需要删除掉
-                prev.next = cur.next; // 这一行代码下来, cur 对应的节点就被删掉了
-                cur = prev.next;        // cur 指向下一个元素, 方便进行下次循环
-            } else {
-                // 这个节点不需要删除
-                prev = cur;
-                cur = cur.next;
+                prev.next = cur.next;
+                cur = prev.next;
             }
+            prev = cur;
+            cur = cur.next;
+
         }
-        // 2. 最后再考虑删除头结点的情况(放到最后, 只需要处理一次即可)
-        if (head.val == val) {
+        if (head.val==val){
             head = head.next;
         }
         return head;
     }
 
+
+
+    // 诸如链表为空等特殊情况一定要重点考虑到
+    public ListNode reverseList(ListNode head) {
+        if (head == null) {
+            // 空链表, 不需要逆置
+            return null;
+        }
+        if (head.next == null) {
+            // 链表中只有一个元素, 也不需要逆置
+            return head;
+        }
+        ListNode newHead = null;
+        ListNode cur = head;
+        ListNode prev = null;
+        while (cur != null) {
+            ListNode next = cur.next;
+            if (next == null) {
+                // 当前 cur 就是原链表的末尾
+                newHead = cur;
+            }
+            // 逆置的核心操作
+            cur.next = prev;
+            // 更新三兄弟的指向位置
+            prev = cur;
+            cur = next;
+        }
+        return newHead;
     }
 }
+
