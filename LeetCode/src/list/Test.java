@@ -4,7 +4,7 @@ package list;
 import java.util.List;
 
 public class Test {
-    public class ListNode {
+    public static class ListNode {
         int val;
         ListNode next;
         ListNode(int x) {
@@ -92,32 +92,29 @@ public class Test {
         if(l1 == null && l2 ==null){
             return null;
         }
-        ListNode sentry = new ListNode(0);
-        ListNode cur = sentry;
+        ListNode newHead = new ListNode(0);
+        ListNode newTail = newHead;
         while(l1 != null && l2 !=null){
             if(l1.val <= l2.val){
-                cur.next = l1;
+                newTail.next = new ListNode(l1.val);
+                newTail = newTail.next;
                 l1 = l1.next;
-                cur = cur.next;
-                cur.next=null;
             }else{
-
-                cur.next = l2;
-                l2 = l2.next;
-                cur = cur.next;
-                cur.next=null;
+                newTail.next = new ListNode(l2.val);
+                newTail = newTail.next;
+                l2=l2.next;
             }
         }
         if(l1 == null){
-            cur.next = l2;
+            newTail.next = l2;
         }
         if(l2 == null){
-            cur.next = l1;
+            newTail.next = l1;
         }
-        return sentry.next;
+        return newHead.next;
     }
 
-
+//
     public ListNode partition(ListNode pHead, int x) {
         if(pHead ==null){
             return null;
@@ -125,25 +122,24 @@ public class Test {
         if(pHead.next == null){
             return pHead;
         }
-        ListNode big = new ListNode(0);
-        ListNode curBig = big;
-        ListNode small = new ListNode(0);
-        ListNode curSmall = small.next;
-        while (pHead != null){
-            if (pHead.val >= x){
-                curBig.next = pHead;
-                pHead = pHead.next;
-                curBig = curBig.next;
-                curBig.next = null;
+        ListNode cur = pHead; //遍历pHead
+        ListNode bigHead = new ListNode(0);
+        ListNode bigTail = bigHead;
+        ListNode smallHead = new ListNode(0);
+        ListNode smallTail = smallHead;
+        while (cur != null){
+            if (cur.val >= x){
+                bigTail.next = new ListNode(cur.val); //连接时创建新node 此时next一定为null
+                bigTail = bigTail.next;
+                cur = cur.next;
             }else{
-                curSmall.next = pHead;
-                pHead = pHead.next;
-                curSmall = curSmall.next;
-                curSmall.next = null;
+                smallTail.next =new ListNode(cur.val);
+                smallTail = smallTail.next;
+                cur = cur.next;
             }
         }
-        curSmall.next = big.next;
-        return small.next;
+        smallTail.next = bigHead.next;
+        return smallHead.next;
     }
 
 //7. 在一个排序的链表中，存在重复的结点，请删除该链表中重复的结点，重复的结点不保留，返回链表头指针
@@ -173,7 +169,7 @@ public class Test {
     public boolean chkPalindrome(ListNode A) {
         //1.求得链表的长度
         int size = getListSize(A);
-        //2.从一半处 逆置链表
+        //2.从一半处 逆置后半部分链表
         ListNode cur = A;
         int step = size>>1;
         for (int i = 0;i<step;i++){
@@ -192,7 +188,6 @@ public class Test {
             cur = next;
         }
         //3.比较 前半部分的链表 和逆序后的后半部分链表是否相等
-        int before = getListSize(A);
         int after = getListSize(newHead);
         //注意此时链表的长度为奇数时 两个链表长度一样 若为偶数是 此时的中间值是第二个 所以before长度长
         //要以after的长度为基准
@@ -205,8 +200,90 @@ public class Test {
         }
         return true;
     }
-    public static void main(String[] args){
 
+
+
+//给定两个链表 判断 链表是否相交
+    public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+        //1.首先得到两个链表的长度  并取得差值
+        int sizeA = this.getListSize(headA);
+        int sizeB = this.getListSize(headB);
+        int different = Math.abs(sizeA - sizeB) ; //取得差值的绝对值
+        //2.让长度较长的链表先开始遍历 直到长度与另外的链表长度相等
+        if (sizeA > sizeB){
+            for (int i = 0; i<different;i++){
+                headA = headA.next;
+            }
+        }else if(sizeA <sizeB){
+            for (int i = 0; i<different;i++){
+                headB = headB.next;
+            }
+        }
+        //3.同时遍历两个链表 并比较两个链表的元素引用
+        while(headA != null){
+            if(headA == headB){  //若两个节点引用的hash值相等 说明有交点
+                return headA;
+            }
+            headA = headA.next;
+            headB = headB.next;
+        }
+        return null;
+    }
+
+
+    //给定一个链表 判断链表是否有环
+        //核心  快慢指针  让差值为1
+    public boolean hasCycle(ListNode head) {
+        ListNode fast = head;  //快指针
+        ListNode slow = head;   //慢指针
+        while (fast!= null&&fast.next != null){ //注意 空指针异常
+            slow = slow.next;  //slow 走一步
+            fast = fast.next.next; //fast 走两步
+            if(fast == slow){  //若引用相等 说明有环
+                return true;
+            }
+        }
+        return false;
+    }
+//给定一个链表，返回链表开始入环的第一个节点。 如果链表无环，则返回 null。
+    //若链表有环 那么fast和 slow 相交的位置到入环第一个节点距离 与 头结点到入环的第一个节点的距离 相等
+    public ListNode detectCycle(ListNode head) {
+        ListNode fast = head;
+        ListNode slow = head;
+        while (fast != null && fast.next!=null){
+            slow = slow.next;
+            fast = fast.next.next;
+            if(fast == slow){  //说明有环
+                ListNode cur = head; //创建一个新节点 从头开始
+                while(slow != cur){//另一个节点从 相交点开始 当两个节点重合就是环的第一个节点
+                    slow = slow.next;
+                    cur = cur.next;
+                }
+                return cur;
+            }
+        }
+        return null;
+    }
+
+
+    public static void main(String[] args){
+        ListNode a = new ListNode(1);
+        ListNode b = new ListNode(2);
+        ListNode c = new ListNode(3);
+        ListNode d = new ListNode(1);
+        ListNode e = new ListNode(2);
+        ListNode f = new ListNode(6);
+        a.next= b;
+        b.next =c;
+        //c.next = d;
+        d.next =e;
+        e.next = f;
+        Test t= new Test();
+        ListNode result = t.mergeTwoLists(a,d);
+        while (result!=null){
+            System.out.println(result.val);
+            result = result.next;
+        }
     }
 }
 
