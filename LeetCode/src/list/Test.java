@@ -265,6 +265,28 @@ public class Test {
         return null;
     }
 
+public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+
+        ListNode pa = headA;
+        ListNode pb = headB;
+        while (pa != pb) {
+            if (pa != null) {
+                pa = pa.next;
+            }else{
+                pa = headB;
+            }
+            if (pb != null) {
+                pb = pb.next;
+            }else{
+                pb = headA;
+            }
+        }
+        if (pa ==null) {
+            return null;
+        }
+        return pa;
+    }
+
 
     public static void main(String[] args){
         ListNode a = new ListNode(1);
