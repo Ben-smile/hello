@@ -47,6 +47,25 @@ public class Test {
     }
 
 
+//给定一个链表，两两交换其中相邻的节点，并返回交换后的链表。你不能只是单纯的改变节点内部//的值，而是需要实际的进行节点交换。
+public ListNode swapPairs(ListNode head) {
+
+
+        if ((head == null) || (head.next == null)) {
+            return head;
+        }
+
+        ListNode firstNode = head;
+        ListNode secondNode = head.next;
+
+
+        firstNode.next  = swapPairs(secondNode.next);
+        secondNode.next = firstNode;
+
+
+        return secondNode;
+    }
+
     // 诸如链表为空等特殊情况一定要重点考虑到
     public ListNode reverseList(ListNode head) {
         ListNode prev = null;
