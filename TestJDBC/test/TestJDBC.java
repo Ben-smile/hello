@@ -22,13 +22,13 @@ public class TestJDBC {
             //5.执行操作
             //stat.executeUpdate("update person set salary = 100 where username = '苟犇'");
             //查询操作  Query  返回值 是一个结果集
-            ResultSet rs =  stat.executeQuery("select *from peroson");
+            ResultSet rs =  stat.executeQuery("select *from person");
             while(rs.next()){
                 String name = rs.getString("username");
                 String address = rs.getString("address");
-                //int s = rs.getInt("salary");
+                int s = rs.getInt("salary");
                 String dept =  rs.getString("department");
-                System.out.println(name + "-"+address+"-"+"-"+dept);
+                System.out.println(name + "-"+address+"-"+s+"-"+dept);
             }
             //6.关闭 (先创建的后关闭)
             rs.close();
