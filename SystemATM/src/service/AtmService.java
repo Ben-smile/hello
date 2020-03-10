@@ -5,67 +5,73 @@ import domain.Atm;
 
 public class AtmService {
 
-    //Service业务层需要Dao持久层的支持
-    //在Service层中存储一个Dao层的对象作为属性
 
+    //Service层 用来处理逻辑
     private AtmDao dao = new AtmDao();
 
-    //以下的方法全都是处理业务逻辑  比较 判断 计算 没有任何一个方法可以看到读写数据库操作
-    //登录
+    //设计一个登录方法
     public String login(String aname,String apassword){
         Atm atm = dao.selectOne(aname);
         if(atm!=null && atm.getApassword().equals(apassword)){
-            return "登录成功";
+            return "登录成功";//登录 登陆
         }
         return "用户名或密码错误";
     }
-    //查询余额
-    public float cha(String aname){
+
+    //设计一个查询余额方法
+    public Float inquire(String aname){
         return dao.selectOne(aname).getAbalance();
     }
-    //存款
-    public void cun(String aname,float cunMoney){
-        //找寻原始的数据  atm = selectOne
-        Atm atm = dao.selectOne(aname);
-        //只需要做修改的事情  逻辑  计算
-        atm.setAbalance(atm.getAbalance() + cunMoney);
-        //最终的数据交给 update
-        dao.update(atm);
+
+    //设计一个注册新用户的方法
+    public int regist(String aname,String apassword,Float abalance){
+        Atm atm = new Atm(aname,apassword,abalance);
+        return dao.insert(atm);
     }
-    //取款
-    public void qu(String aname,float quMoney){
+
+    //设计一个方法 判断账号名是否存在
+    public boolean isExist(String aname){
+        if(dao.selectOne(aname)!=null){
+            return true;//当前账号存在
+        }
+        return false;//账号不存在
+    }
+
+    //设计一个方法 存款
+    public int deposit(String aname,Float depositMoney){
         Atm atm = dao.selectOne(aname);
-        if(atm.getAbalance()>=quMoney) {
-            atm.setAbalance(atm.getAbalance() - quMoney);
-            dao.update(atm);
+        atm.setAbalance(atm.getAbalance()+depositMoney);
+        return dao.update(atm);
+    }
+
+    //设计一个方法 取款
+    public int withdrawal(String aname,Float withdrawalMoney){
+        Atm atm = dao.selectOne(aname);
+        if(atm.getAbalance()>=withdrawalMoney){
+            atm.setAbalance(atm.getAbalance()-withdrawalMoney);
+            return dao.update(atm);//1成功  0没有成功
         }else{
-            System.out.println("对不起,余额不足");
+            return -1;//余额不足
         }
     }
-    //转账
-    public void zhuan(String outName,String inName,float zhuanMoney){
-//        this.qu(outName,zhuanMoney);
-//        this.cun(inName,zhuanMoney);
+
+    //设计一个方法 转账
+    public int transfer(String outName,String inName,Float transferMoney){
         Atm outAtm = dao.selectOne(outName);
         Atm inAtm = dao.selectOne(inName);
-        if(outAtm.getAbalance()>=zhuanMoney){
-            outAtm.setAbalance(outAtm.getAbalance()-zhuanMoney);
-            inAtm.setAbalance(inAtm.getAbalance()+zhuanMoney);
-            dao.update(outAtm);
-            dao.update(inAtm);
+        if(outAtm.getAbalance()>=transferMoney){
+            outAtm.setAbalance(outAtm.getAbalance() - transferMoney);
+            inAtm.setAbalance(inAtm.getAbalance() + transferMoney);
+            return dao.update(outAtm) + dao.update(inAtm);//2成功
         }else{
-            System.out.println("对不起,余额不足");
+            return -1;//余额不足
         }
     }
-    //开户
-    public void kai(String aname,String apassword,float abalance){
-        dao.insert(new Atm(aname,apassword,abalance));
+
+    //设计一个方法 销户
+    public int closeAccount(String aname){
+        return dao.delete(aname);
     }
-    //销户
-    public void xiao(String aname){
-        Atm atm = dao.selectOne(aname);
-        if(atm!=null){
-            dao.delete(aname);
-        }
-    }
+
+
 }
