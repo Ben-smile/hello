@@ -1,9 +1,13 @@
 package view;
 
+import service.AtmService;
 import util.BaseFrame;
+import util.MySpring;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class RegistFrame extends BaseFrame {
 
@@ -12,13 +16,15 @@ public class RegistFrame extends BaseFrame {
         super("注册窗口");
         this.init();
     }
-    private static RegistFrame registFrame;   //窗口只有一个 单例模式
-    public synchronized static RegistFrame getRegistFrame(){
-        if(registFrame==null){
-            registFrame = new RegistFrame();
+
+    private static RegistFrame rs ;  //窗口单例
+    public static RegistFrame getInstance(){
+        if(rs == null) {
+            rs = new RegistFrame();
         }
-        return registFrame;
+        return rs;
     }
+
 
     //添加一些组件的属性
     private JPanel mainPanel = new JPanel();
@@ -76,13 +82,83 @@ public class RegistFrame extends BaseFrame {
         mainPanel.add(backButton);
         this.add(mainPanel);
     }
+//---------------------------------
+    private AtmService as = MySpring.getBean("service.AtmService");
+
+    //设计一个方法 用来清空 注册窗口信息
+     void clean(){
+        accountField.setText("");
+        passwordField.setText("");
+        balanceField.setText("");
+    }
+    private LoginFrame lf = null;//一个登陆窗口 当属性
     protected void addListener() {
+        registButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String account = accountField.getText();
+                String password = passwordField.getText();
+                String balance = balanceField.getText();
+                //做一个新增的方法
+                if(as.isExist(account)){
+                    JOptionPane.showMessageDialog(RegistFrame.this,"用户名已存在");
+                    RegistFrame.this.clean();
+                }else{
+                    try {
+                        as.regist(account, password, Float.parseFloat(balance));
+                        JOptionPane.showMessageDialog(RegistFrame.this, "注册成功");
+                        //打开登录窗口
+                        if (lf == null) {
+                            lf = LoginFrame.getInstance();
+                        }
+                        lf.setVisible(true);
+                        //隐藏注册窗口
+                        RegistFrame.this.setVisible(false);
+                        //清除登录窗口的信息
+                        lf.clean();
+                    }catch (NumberFormatException n){
+                        JOptionPane.showMessageDialog(RegistFrame.this, "输入金额有误");
+                        RegistFrame.this.clean();
+                    }
+                }
+
+            }
+        });
+
+
+        resetButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                RegistFrame.this.clean();
+            }
+        });
+
+        backButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                //判断登录窗口是否为空
+                if(lf == null){
+                    lf = LoginFrame.getInstance();
+                }
+                //打开登录窗口
+                lf.setVisible(true);
+                //隐藏注册窗口
+                RegistFrame.this.setVisible(false);
+                //清除登录窗口的信息
+                lf.clean();
+            }
+        });
+
 
     }
     protected void setFrameSelf() {
         this.setBounds(430,200,500,360);
-        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         this.setResizable(false);
         this.setVisible(true);
     }
+
+
+
 }

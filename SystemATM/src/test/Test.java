@@ -7,6 +7,6 @@ import view.LoginFrame;
 public class Test {
 
     public static void main(String[] args){
-        LoginFrame lf = new LoginFrame("欢迎进入系统");
+        LoginFrame lf = LoginFrame.getInstance();
     }
 }

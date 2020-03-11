@@ -2,12 +2,13 @@ package service;
 
 import dao.AtmDao;
 import domain.Atm;
+import util.MySpring;
 
 public class AtmService {
 
 
     //Service层 用来处理逻辑
-    private AtmDao dao = new AtmDao();
+    private AtmDao dao = MySpring.getBean("dao.AtmDao");
 
     //设计一个登录方法
     public String login(String aname,String apassword){

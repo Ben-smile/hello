@@ -1,6 +1,8 @@
 package view;
 
+import service.AtmService;
 import util.BaseFrame;
+import util.MySpring;
 
 import javax.swing.*;
 import java.awt.*;
@@ -9,12 +11,16 @@ import java.awt.event.ActionListener;
 
 public class LoginFrame extends BaseFrame {
 
-    public LoginFrame(String title) {
-        super(title);
+    public LoginFrame() {
+        super("请登录");
         this.init();
     }
-    public LoginFrame(){
-        this.init();
+    private static LoginFrame lf ;  //窗口单例
+    public static LoginFrame getInstance(){
+        if(lf == null) {
+            lf = new LoginFrame();
+        }
+        return lf;
     }
 
     private JPanel mainPanel = new JPanel();
@@ -62,11 +68,23 @@ public class LoginFrame extends BaseFrame {
         mainPanel.add(registButton);
         this.add(mainPanel);
     }
+
+
+    private RegistFrame rs = null;//一个注册窗口当属性
     protected void addListener() {
+        //注册按钮
         ActionListener listener = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                RegistFrame.getRegistFrame();
+                    if (rs == null) {
+                        rs = RegistFrame.getInstance();
+                    }
+                    //显示注册窗口
+                    rs.setVisible(true);
+                    //让登陆窗口隐藏
+                    LoginFrame.this.setVisible(false);
+                    //清除 注册窗口内的信息
+                    rs.clean();
             }
         };
         registButton.addActionListener(listener);
@@ -76,7 +94,20 @@ public class LoginFrame extends BaseFrame {
         loginButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new AtmFrame("保护伞银行");
+                String account = accountField.getText();
+                String password = new String(passwordField.getPassword());
+                AtmService as = MySpring.getBean("service.AtmService");
+                String result = as.login(account,password);
+                if(result.equals("登录成功")) {
+                    //显示 Atm窗口
+                    AtmFrame.getInstance(account);//将用户名传入
+                    //让登陆窗口隐藏
+                    LoginFrame.this.setVisible(false);
+
+                }else{
+                    JOptionPane.showMessageDialog(LoginFrame.this,result);
+                    LoginFrame.this.clean();
+                }
             }
         });
     }
@@ -87,6 +118,10 @@ public class LoginFrame extends BaseFrame {
         this.setVisible(true);
     }
 
+//清除文本框中的信息 使用默认修饰权限 让 RegistFrame也可以调用
+    void clean(){
+        accountField.setText("");
+        passwordField.setText("");
 
-
+    }
 }
