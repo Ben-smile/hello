@@ -1,0 +1,126 @@
+body{
+    background-image: url(../img/bg.jpg);
+    background-position: top;
+    background-repeat: no-repeat;
+}
+.clearfix::after{
+    content: "";
+    display: block;
+    clear: both;
+}
+.header .menu{
+    position: relative;
+    width: 1206px;
+    height: 72px;
+    background-image: url(../img/bg_nav.jpg);
+    margin: 43px auto 0 auto;
+
+    border-top: 2px solid #3f2a22;
+    border-bottom: 2px solid #3f2a22;
+
+}
+
+.header .menu a{
+    text-align: center;
+    float: left;
+    height: 72px;
+    width: 160px;
+    line-height: 72px;
+
+    border-left: 2px solid #3f2a22;
+    color: #f8b700;
+    font-size: 16px;
+
+    font-weight: bold;
+}
+.header .menu a:hover{
+    color: #fff;
+}
+.header .menu a:nth-child(3){
+    margin-right: 230px;
+    border-right: 2px solid #3f2a22;
+}
+
+.header .menu a:nth-child(6){
+    
+    border-right: 2px solid #3f2a22;
+ 
+}
+
+.header  .logo{
+    position: absolute;
+    background-image: url(../img/logo.png);
+    width: 236px;
+    height: 117px;
+    background-position: center;
+    left: 485px;
+    top: -18px;
+    background-repeat: no-repeat;
+    margin:0 auto;
+}
+
+.header  .logo h1{
+    display: none;
+}
+
+.botton{
+    width: 649px;
+    height:96px;
+    margin:469px auto 88px auto;
+    background-image: url(../img/btns.png);
+}
+
+.botton a{
+    width: 310px;
+    height: 87px;
+    display: inline-block;
+}
+.botton a:first-child{
+    margin-right: 13px;
+}
+.botton a:nth-child(1){
+    margin-left: 6px;
+}
+
+.botton a span{
+    display: none;
+}
+
+.adv{
+    width: 1206px;
+    height: 207px;
+    margin:0 auto 64px auto;
+    
+}
+
+.adv .adv-item li{
+
+    width: 293px;
+    height: 207px;
+    background-color:#fff;
+    float: left;
+    margin-right: 11px;
+    border: 2px solid #3f2a22;
+    box-sizing: border-box;
+}
+.adv .adv-item li:nth-child(4){
+    margin-right: 0;
+}
+
+.adv .adv-item .name{
+    height: 54px;
+    background-color: #211510;
+    border-bottom: 2px solid #3f2a22;
+    top: 0;
+    left: 0;
+    width: 290px;
+    line-height: 54px;
+    text-align: center;
+    color: #f8b700;
+    font-size: 16px;
+
+}
+.adv .adv-item img{
+    height: 147px;
+    width: 289px;
+}
