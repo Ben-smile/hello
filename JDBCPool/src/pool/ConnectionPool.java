@@ -1,5 +1,6 @@
 package pool;
 
+import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,10 +28,9 @@ public class ConnectionPool {
         return connectionPool;
     }
 
-
     private static final int DEFAULT_CONNECTION = 10;
     //属性---集合
-    private List<MyConnection> connectionList = new ArrayList<MyConnection>();
+    private List<Connection> connectionList = new ArrayList<Connection>();
 
     //设计一个块
     {
@@ -50,11 +50,11 @@ public class ConnectionPool {
     //需要给用户提供一个方法   获取一个可用连接的
     //  参数      没有
     //  返回值    MyConnection
-    private synchronized MyConnection getMC(){
-        MyConnection result = null;
+    private synchronized Connection getMC(){
+        Connection result = null;
         for(int i=0;i<connectionList.size();i++){
             //去连接池中 每次循环获取一个连接
-            MyConnection mc = connectionList.get(i);
+            MyConnection mc = (MyConnection) connectionList.get(i);
             //判断mc的状态
             if(mc.isUsed() == false){//当前获取的连接是空闲
                 mc.setUsed(true);//据为己有
@@ -67,8 +67,8 @@ public class ConnectionPool {
 
     //为了让用户体验更好 添加一个排队等待的机制
     //  5秒钟比较合适
-    public MyConnection getMyConnection(){
-        MyConnection result = this.getMC();
+    public Connection getConnection(){
+        Connection result = this.getMC();
         int count = 0;
         while(result==null && count<ConfigurationReader.getIntValue("waitTime")*10){
             try {
