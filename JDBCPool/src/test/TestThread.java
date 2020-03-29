@@ -1,21 +1,23 @@
 package test;
 
-import pool.ConnectionPool;
-import pool.MyConnection;
+import JDBCPool.ConnectionPool;
+import JDBCPool.MyConnection;
 
-public class TestThread extends Thread {
+
+public class TestThread extends Thread{
+
+
 
     public void run(){
-        //模拟用户使用连接
-        MyConnection mc = ConnectionPool.getInstance().getMyConnection();
-        System.out.println(mc);
-        //使用 mc.getConnection();   preparedStatement();
+        ConnectionPool cp =ConnectionPool.getInstance();
+        MyConnection conn = cp.getConnection();
         try {
+            System.out.println("连接对象"+conn);
             Thread.sleep(3000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        //释放
-        mc.setUsed(false);//空闲状态
+        conn.setState(false);
     }
+
 }
