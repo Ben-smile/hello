@@ -1,28 +1,30 @@
 package orm;
 
 import java.util.ArrayList;
-import java.util.List;
 
-/**
- * 这是一个自定义的类
- * 这个类的目的是为了存储  被解析后SQL上的那些信息
- *   一个是SQL中的好多key---->ArrayList<String>
- *   另一个是SQL带有问号结构的那种类型--->特殊结构的SQL还原回问号结构
- */
 public class SQLAndKey {
 
-    private StringBuilder sql = new StringBuilder();
-    private List<String> keyList = new ArrayList();
+    private String SQL;
+    private ArrayList<String> keys;
 
-    public SQLAndKey(StringBuilder sql,List<String> keyList){
-        this.sql = sql;
-        this.keyList = keyList;
+    public SQLAndKey(String SQL, ArrayList<String> keys) {
+        this.SQL = SQL;
+        this.keys = keys;
     }
 
-    public String getSQL(){
-        return sql.toString();
+    public String getSQL() {
+        return SQL;
     }
-    public List<String> getKeyList(){
-        return keyList;
+
+    public void setSQL(String SQL) {
+        this.SQL = SQL;
+    }
+
+    public ArrayList<String> getKeys() {
+        return keys;
+    }
+
+    public void setKeys(ArrayList<String> keys) {
+        this.keys = keys;
     }
 }
