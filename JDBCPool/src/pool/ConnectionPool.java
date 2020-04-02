@@ -53,7 +53,7 @@ public class ConnectionPool {
     private synchronized Connection getMC(){
         Connection result = null;
         for(int i=0;i<connectionList.size();i++){
-            //去连接池中 每次循环获取一个连接
+            //去连接池中 每次循环获取一个连接·
             MyConnection mc = (MyConnection) connectionList.get(i);
             //判断mc的状态
             if(mc.isUsed() == false){//当前获取的连接是空闲

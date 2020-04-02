@@ -1,50 +1,64 @@
 package service;
 
-import dao.StudentDao;
-import domian.Student;
+
+import newdao.StudentDao;
+import domain.Student;
+import orm.SqlSession;
+
+import java.util.List;
 
 public class StudentService {
 
-    private StudentDao dao = new StudentDao();
+    //只有service获取dao时改变了
+    // 原来dao是new出来的                     是个StudentDao对象
+    // 现在dao是通过getMapper方法获取出来的     是StudentDao对象的代理对象
+    private StudentDao dao = new SqlSession().getMapper(StudentDao.class);
 
-
-    //方法1
-
-//    public void insert (Student student){
-//        String sql = "insert into student values(?,?,?,?)";
-//        dao.insert(sql,student.getSid(),student.getSname(),student.getSsex(),student.getSage());
-//    }
-//
-//    public void update (Student student){
-//        String sql = "update student set sname = ?,ssex = ?,sage = ? where sid = ?";
-//        dao.update(sql,student.getSname(),student.getSsex(),student.getSage(),student.getSid());
-//    }
-//
-//    public void delete (Integer sid){
-//        String sql = "delete from student where sid = ?";
-//        dao.delete(sql,sid);
-//    }
-    //------------------------------------------------------------
-
-    //方法二
-    public void insert (Student student){
-
+    public void insert(Student student){
         dao.insert(student);
     }
-
-    public void update (Student student){
-
-        dao.update(student);
+    public Student selectOne(Integer sid){
+        return dao.selectOne(sid);
     }
 
-    public void delete (Integer sid){
-
-        dao.delete(sid);
-    }
-
-    public void delete (){
-        dao.delete();
+    public List<Student> studentList(){
+        return dao.selectList();
     }
 
 
+
+    //==========================================================
+
+    //业务层
+    //这个类中的方法都是业务逻辑
+    //比较 判断 计算 等等
+
+//    private StudentDao dao = new StudentDao();
+
+    //业务方法 新增 修改 删除
+//    public void insert(Student student){
+//        dao.insert(student);
+//    }
+//    public void insert(Map map){
+//        dao.insert(map);
+//    }
+//    public void delete(Integer sid){
+//        dao.delete(sid);
+//    }
+//    public void update(Student student){
+//        dao.update(student);
+//    }
+    //-----------------------------------------------------
+    //业务方法 查询单条 查询多条
+//    public Student selectOne(Integer sid){
+//        return dao.selectOne(sid);
+//    }
+//    public String selectOne(Integer sid){
+//        return dao.selectOne(sid);
+//    }
+
+
+//    public List<Student> selectList(){
+//
+//    }
 }

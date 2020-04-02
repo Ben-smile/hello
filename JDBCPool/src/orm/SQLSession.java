@@ -1,7 +1,17 @@
 package orm;
 
+import orm.annotation.Delete;
+import orm.annotation.Insert;
+import orm.annotation.Select;
+import orm.annotation.Update;
 import pool.ConnectionPool;
+import sun.reflect.generics.reflectiveObjects.ParameterizedTypeImpl;
 
+import java.lang.annotation.Annotation;
+import java.lang.reflect.InvocationHandler;
+import java.lang.reflect.Method;
+import java.lang.reflect.Proxy;
+import java.lang.reflect.Type;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -265,4 +275,94 @@ public class SqlSession {
     public <T> List<T> selectList(String sql,Class resultType){
         return this.selectList(sql,null,resultType);
     }
+
+
+    //===========================================================================
+
+    //让SqlSession帮DAO创建一个小弟(代理对象)
+    //  参数    到底是哪个DAO
+    //  返回值  对象-代理对象-代理DAO做事
+    public <T> T getMapper(Class clazz){//StudentDao.class
+        return (T)Proxy.newProxyInstance(clazz.getClassLoader(), new Class[]{clazz}, new InvocationHandler() {
+            public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+                //invoke方法是代理对象具体做事的方式
+                //帮助原来的DAO做的事情  调用自己的增删改查方法啦
+                //invoke方法中有三个参数
+                // proxy代理对象
+                // method被代理的那个方法
+                // args被代理方法的参数
+
+                //代理具体怎么做呢? DAO原来就调用了SqlSession中的某个方法
+                //               代理也是调用SqlSession中的某个方法
+                //1.需要帮助DAO调用哪个方法???----取决于注解名
+
+                //获取方法上面的注解
+                Annotation an = method.getAnnotations()[0];
+                //获取找到这个注解的类型
+                Class type = an.annotationType();
+                //找到DAO方法上的注解类型---确定该调用哪个上面方法了
+                //但是由于调用上面方法的时候需要SQL
+                //  所以我们需要在调用上面方法之前  解析注解---得到SQL
+                //找寻当前type注解类型中的那个value方法
+                Method valueMethod = type.getDeclaredMethod("value");
+                //执行这个value方法获取里面搬运过来的SQL
+                String sql = (String)valueMethod.invoke(an);
+                //调用DAO方法之前 除了方法名 和SQL以外 还需要提供SQL上面的值
+                //  值只有几种情况 1.基本类型int float String 2.map 3.domain 4.没有
+                Object param = args==null?null:args[0];
+                //根据type判断该调用上述的哪个方法
+                if(type == Insert.class){
+                    SqlSession.this.insert(sql,param);
+                }else if(type == Delete.class){
+                    SqlSession.this.delete(sql,param);
+                }else if(type == Update.class){
+                    SqlSession.this.update(sql,param);
+                }else if(type == Select.class){
+                    //根据注解名字是无法确定该调用哪个方法
+                    //可以根据method反射 寻找返回值来判断 domain  List<domain>
+                    //获取method的返回值类型
+                    Class methodReturnTypeClass = method.getReturnType();
+                    if(methodReturnTypeClass==List.class){//多条
+                        //解析methodReturnTypeClass里面的那个泛型
+                        Type returnType = method.getGenericReturnType();//返回值的具体类型(java.util.List<domain.Student>)
+                        //上述方法的返回值类型正常应该是个Class
+                        //  由于这个Class没有办法操作泛型
+                        //  Type是一个接口，好多子类实现
+                        //  需要将type还原成可以操作泛型的那个类型
+                        ParameterizedTypeImpl realReturnType = (ParameterizedTypeImpl)returnType;
+                        //操作返回值类型中的泛型类
+                        Type[] patternTypes = realReturnType.getActualTypeArguments();//获取到泛型类 []
+                        //获取泛型类中的第一个元素
+                        Type patternType = patternTypes[0];
+                        //还原成需要的Class
+                        Class resultType = (Class)patternType;
+                        return SqlSession.this.selectList(sql,param,resultType);
+                    }else{//单条
+                        return SqlSession.this.selectOne(sql,param,methodReturnTypeClass);
+                    }
+                }else{
+                    System.out.println("其他注解 没有你这个注解");
+                }
+                return null;
+            }
+        });
+
+
+//        //如果想要使用动态代理对象帮忙做事  被代理的DAO必须是个接口
+//        //3个条件
+//        //  1.类加载器ClassLoader
+//        ClassLoader loader = clazz.getClassLoader();
+//        //  2.Class[] 加载的类  通常数组就一个元素
+//        Class[] interfaces = new Class[]{clazz};
+//        //  3.具体该怎么做事InvocationHandler 接口 具体实现接口 告知具体该如何做事
+//        InvocationHandler h = new InvocationHandler(){
+//            public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+//                //用来描述代理对象具体如何做事
+//                return null;
+//            }
+//        };
+//        //创建一个代理对象
+//        return (T)Proxy.newProxyInstance(loader,interfaces,h);
+    }
+
 }

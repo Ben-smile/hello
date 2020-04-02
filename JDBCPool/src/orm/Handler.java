@@ -135,7 +135,7 @@ public class Handler {
             //获取结果集中的全部信息
             ResultSetMetaData resultSetMetaData = rs.getMetaData();
             //遍历循环结果集
-            for(int i=1;i<resultSetMetaData.getColumnCount();i++){
+            for(int i=1;i<=resultSetMetaData.getColumnCount();i++){
                 //获取结果集的每一个列名字
                 String columnName = resultSetMetaData.getColumnName(i);
                 //反射找到列名字对应的那个属性
