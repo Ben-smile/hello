@@ -3,10 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 </head>
 <body>
-    <script src="../../common/BetterFunction.js"></script>
+    <script>
+
+
+        var a = 1;
+        var b = 2;
+        function test(a,b){
+            for(var i = 0;i< arguments.length;i++){
+                console.log(arguments[i]);
+            }
+            
+            //console.log(a+b);
+        }
+        
+        test(a);
+        console.log(a);
+        console.log(b);    
+        
+    </script>
 </body>
 </html>
