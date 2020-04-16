@@ -7,22 +7,30 @@
 </head>
 <body>
     <script>
-
-
-        var a = 1;
-        var b = 2;
-        function test(a,b){
-            for(var i = 0;i< arguments.length;i++){
-                console.log(arguments[i]);
+        function animalYell(name){
+            if(name === '狗'){
+                return '汪汪';
+            }else if (name === '猫'){
+                return '喵';
+            }else if (name === '老鼠'){
+                return '吱吱';
             }
-            
-            //console.log(a+b);
         }
-        
-        test(a);
-        console.log(a);
-        console.log(b);    
-        
+        //斐波那契数列
+        function test(n){
+            if (n === 1 || n===2){
+                return 1;
+            }
+            return test(n-1) + test(n-2);
+        }
+        //阶乘
+        function test1(n){
+            if(n===1){
+                return 1;
+            }
+            return n*test1(n-1);
+        }
+        console.log(test1(6));
     </script>
 </body>
 </html>
