@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var str = false + 1;
+        document.write(str); //1 隐式类型转换  false --> 0
+
+        var demo = false == 1;
+        document.write(demo); //false 
+
+        if (typeof(a)&&-true + (+undefined) + ""){
+            document.write('基础扎实');
+        }
+        //typeof(a) ---> typeof是唯一一个直接写未定义变量时不会报错
+        //          --->"undefined"
+        //  -true --> -1     (+undefined)----> NaN 
+        //   -1 + NaN ----> NaN + "" -----> "NaN"
+        //   "undefined" && "NaN" ---> "NaN" --->string--->true
+
+        if (11 + "11" * 2 == 33){
+            document.write('基础扎实');
+        }
+        // "11" * 2 ----> 22 + 11 ---> 33 == 33 --->true
+
+        !!" " + !!"" - !!false||document.write('觉得能打印就别学了');
+
+        //!!" " -->true !!"" -->false !!false -->false
+        // true + false - false --->1 --->true 后面不执行
+    </script>
+</body>
+</html>
