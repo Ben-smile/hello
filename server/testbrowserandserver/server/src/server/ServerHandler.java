@@ -1,12 +1,8 @@
 package server;
 
-import controller.IndexController;
-
 import java.io.*;
-import java.lang.reflect.Method;
 import java.net.Socket;
 import java.util.HashMap;
-import java.util.Properties;
 
 public class ServerHandler extends Thread {
 
@@ -63,31 +59,21 @@ public class ServerHandler extends Thread {
         // 另一个是为了接受响应回来的结果  创建时是空对象 在Controller执行完毕后 将其填满
         HttpServletRequest request = new HttpServletRequest(content,paramsMap);
         HttpServletResponse response = new HttpServletResponse();//空的
-        this.findController(request,response);
+        ServletController.findController(request,response);
+        //上面这个方法执行完毕 真实的Controller里面的那个service方法执行完了
+        //response对象中应该就有响应信息啦
+        this.responseToBrowser(response);
     }
-    //找人干活---控制层    (controller  action  servlet)
-    //content----index     map-----{{name,zzt},{},{}}
-    private void findController(HttpServletRequest request,HttpServletResponse response){
+
+    //将最终的响应信息 写回浏览器
+    private void responseToBrowser(HttpServletResponse response){
         try {
-            //获取request对象中的请求名字
-            String content = request.getContent();
-            //参考配置文件
-            Properties pro = new Properties();
-            pro.load(new FileReader("src//web.properties"));
-            String realControllerName = pro.getProperty(content);
-            //反射获取类
-            Class clazz = Class.forName(realControllerName);
-            Object obj = clazz.newInstance();
-            //反射找寻类中的方法
-            Method method = clazz.getMethod("test",HttpServletRequest.class,HttpServletResponse.class);
-            method.invoke(obj,request,response);
-        } catch (Exception e) {
+            PrintWriter out = new PrintWriter(socket.getOutputStream());
+            out.println(response.getResponseContent());
+            out.flush();
+        } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-    //将最终的响应信息 写回浏览器
-    private void responseToBrowser(){
-
     }
 
 }
