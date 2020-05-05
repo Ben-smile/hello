@@ -15,14 +15,15 @@ public class HttpServletRequest {
         this.paramsMap = paramsMap;
     }
 
+    public String getParameter(String key){
+        return this.paramsMap.get(key);
+    }
+
     public String getContent() {
         return content;
     }
     public void setContent(String content) {
         this.content = content;
-    }
-    public HashMap<String, String> getParamsMap() {
-        return paramsMap;
     }
     public void setParamsMap(HashMap<String, String> paramsMap) {
         this.paramsMap = paramsMap;
