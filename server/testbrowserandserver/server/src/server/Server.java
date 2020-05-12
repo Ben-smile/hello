@@ -16,6 +16,7 @@ public class Server {
             while(true){
                 //等待某一个客户端过来连接
                 Socket socket = server.accept();
+                //利用多线程处理
                 //启动一个线程  负责处理当前浏览器发送过来的消息
                 new ServerHandler(socket).start();
             }
