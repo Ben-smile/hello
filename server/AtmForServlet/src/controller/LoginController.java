@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+@SuppressWarnings("all")
 public class LoginController extends HttpServlet {
 
     public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
@@ -36,8 +37,8 @@ public class LoginController extends HttpServlet {
             out.write("欢迎"+aname+"进入ATM系统<br>");
             out.write("****************************<br>");
             out.write("请输入操作选项<br>");
-            out.write("<a href=\"query?aname="+aname+"\">查询</a><br>");
-            out.write("<a href=\"\">存款</a><br>");
+            out.write("<a href=\"inquiry?aname="+aname+"\">查询</a><br>");//请求操作资源
+            out.write("<a href=\"deposit?aname="+aname+"\">存款</a><br>");//请求操作资源
             out.write("<a href=\"\">取款</a><br>");
             out.write("<a href=\"\">转账</a><br>");
         }else{

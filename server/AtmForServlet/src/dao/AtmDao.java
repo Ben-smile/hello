@@ -7,6 +7,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+@SuppressWarnings("all")
 public class AtmDao {
 
     //持久层   负责数据的读写  全都是纯粹的JDBC  SQL
@@ -42,5 +43,27 @@ public class AtmDao {
             e.printStackTrace();
         }
         return atm;
+    }
+
+    //dao的更新方法
+    public void update(Atm atm){
+        String driver = "com.mysql.cj.jdbc.Driver";
+        String url = "jdbc:mysql://localhost:3306/atm?serverTimezone=CST";
+        String user = "root";
+        String password = "root";
+        String sql = "UPDATE ATM SET APASSWORD = ? , ABALANCE = ? WHERE ANAME = ?";
+        try {
+            Class.forName(driver);
+            Connection conn = DriverManager.getConnection(url,user,password);
+            PreparedStatement pstat = conn.prepareStatement(sql);
+            pstat.setString(1,atm.getApassword());
+            pstat.setFloat(2,atm.getAbalance());
+            pstat.setString(3,atm.getAname());
+            pstat.executeUpdate();
+            pstat.close();
+            conn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

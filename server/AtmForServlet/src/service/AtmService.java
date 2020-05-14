@@ -10,6 +10,7 @@ public class AtmService {
 
     private AtmDao dao = MySpring.getBean("dao.AtmDao");
 
+    //登录业务方法
     public String login(String aname,String apassword){
         //查询数据库中真实的账号和密码
         Atm atm = dao.selectOne(aname);
@@ -20,7 +21,15 @@ public class AtmService {
         return "用户名或密码错误";
     }
 
-    public Float query(String aname){
+    //查询业务方法
+    public Float inquiry(String aname){
         return dao.selectOne(aname).getAbalance();
+    }
+
+    //存钱业务方法
+    public void deposit(String aname,Float depositBalance){
+        Atm atm = dao.selectOne(aname);
+        atm.setAbalance(atm.getAbalance()+depositBalance);//临时的atm对象改掉啦
+        dao.update(atm);
     }
 }

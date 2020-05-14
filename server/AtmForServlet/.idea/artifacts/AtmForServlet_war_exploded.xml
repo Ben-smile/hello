@@ -1,6 +1,6 @@
 <component name="ArtifactManager">
   <artifact type="exploded-war" name="AtmForServlet:war exploded">
-    <output-path>D:/apache-tomcat-9.0.19/webapps/AtmForServlet</output-path>
+    <output-path>D:/apache-tomcat-9.0.20/webapps/AtmForServlet</output-path>
     <root id="root">
       <element id="javaee-facet-resources" facet="AtmForServlet/web/Web" />
       <element id="directory" name="WEB-INF">
