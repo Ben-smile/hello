@@ -14,7 +14,6 @@ public class AtmService {
     public String login(String aname,String apassword){
         //查询数据库中真实的账号和密码
         Atm atm = dao.selectOne(aname);
-        //做比对
         if(atm!=null && atm.getApassword().equals(apassword)){
             return "登录成功";
         }
