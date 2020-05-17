@@ -12,7 +12,7 @@ public class DepositController extends HttpServlet {
 
     public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String aname = request.getParameter("aname");
-         //将响应信息拼接一下
+        //将响应信息拼接一下
         response.setCharacterEncoding("UTF-8");
         PrintWriter out = response.getWriter();
         out.write("<html>");
