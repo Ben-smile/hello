@@ -23,11 +23,15 @@ public class InquiryController extends HttpServlet {
         String aname = request.getParameter("aname");
         System.out.println("接收到了请求发送的名字"+aname);
         //2.调用业务层的方法 ---> 负责查询
-        Float abalance = service.inquiry(aname);//请求的时候没有发送钱
-        //我们调用了业务逻辑来的
-        request.setAttribute("abalance",abalance);//从业务层来的钱 自己带走
+        Float abalance = service.inquiry(aname);
         System.out.println("通过业务方法查询到了余额"+abalance);
-        //3.根据结果给予响应
+        //abalance这个值是控制层找寻底层的业务得来的结果  请求的时候不知道 后面的JSP想要
+        //像这样的值我们需要带走给后面的JSP使用
+        request.setAttribute("abalance",abalance);
+        //request对象中有两个map集合
+        //  Map<String,String>      String value = request.getParameter("key");
+        //  Map<String,Object>      Object value = request.getAttribute("key");
+        //3.根据结果给予响应--->转发走啦
         request.getRequestDispatcher("showBalance.jsp").forward(request,response);
     }
 }
