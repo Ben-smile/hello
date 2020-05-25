@@ -10,7 +10,7 @@
         ****************************<br>
         请输入操作选项<br>
         <a href="inquiry?aname=<%=aname%>">查询</a><br>
-        <a href="deposit">存款</a><br>
+        <a href="showDeposit.jsp?aname=<%=aname%>">存款</a><br>
         <a href="">取款</a><br>
         <a href="">转账</a><br>
     </body>

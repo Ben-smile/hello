@@ -24,7 +24,7 @@
         <url-pattern>/inquiry</url-pattern>
     </servlet-mapping>
 
-    <!-- 存款展示拼接 -->
+    <!-- 真正存款 -->
     <servlet>
         <servlet-name>deposit</servlet-name>
         <servlet-class>controller.DepositController</servlet-class>
@@ -32,15 +32,6 @@
     <servlet-mapping>
         <servlet-name>deposit</servlet-name>
         <url-pattern>/deposit</url-pattern>
-    </servlet-mapping>
-    <!-- 真正存款 -->
-    <servlet>
-        <servlet-name>doDeposit</servlet-name>
-        <servlet-class>controller.DoDepositController</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>doDeposit</servlet-name>
-        <url-pattern>/doDeposit</url-pattern>
     </servlet-mapping>
 
 </web-app>
