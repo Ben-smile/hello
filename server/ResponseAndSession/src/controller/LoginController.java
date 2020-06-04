@@ -19,6 +19,8 @@ public class LoginController extends HttpServlet {
         //找寻业务层的方法做业务处理  调用result = service.login();
         //转发给JSP帮我们拼接响应    另外一个操作资源
         //  请求转发rd.forward();    请求重定向response.sendRedirect();
+
+        //请求转发  传递request和response参数
         //RequestDispatcher rd = request.getRequestDispatcher("welcome.jsp");//目的是为了告知 转发的路径
         //rd.forward(request,response);//真的转发走啦
 
