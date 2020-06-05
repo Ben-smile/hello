@@ -4,9 +4,23 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
 
+    <context-param>
+        <param-name>testParam1</param-name>
+        <param-value>valueParam</param-value>
+    </context-param>
+    <context-param>
+        <param-name>testParam2</param-name>
+        <param-value>valueParam</param-value>
+    </context-param>
+
+
     <servlet>
         <servlet-name>login</servlet-name>
         <servlet-class>controller.LoginController</servlet-class>
+        <init-param>
+            <param-name>key</param-name>
+            <param-value>value</param-value>
+        </init-param>
     </servlet>
     <servlet-mapping>
         <servlet-name>login</servlet-name>

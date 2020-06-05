@@ -4,9 +4,11 @@
         <%
             String requestTest = (String)request.getAttribute("test");
             String sessionTest = (String)session.getAttribute("test");
+            String applicationTest = (String)application.getAttribute("test");
         %>
         接收到的数据如下:<br>
         <%=requestTest%><br>
-        <%=sessionTest%>
+        <%=sessionTest%><br>
+        <%=applicationTest%>
     </body>
 </html>
