@@ -7,6 +7,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -16,7 +17,9 @@ public class DepositController extends HttpServlet {
     private AtmService service = MySpring.getBean("service.AtmService");
 
     public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String aname = request.getParameter("aname");
+//        String aname = request.getParameter("aname");
+        HttpSession session = request.getSession();
+        String aname = (String)session.getAttribute("aname");
         String depositBalance = request.getParameter("depoistBalance");
         System.out.println("接收到了名字和存款金额:"+aname+"--"+depositBalance);
         //调用业务层的方法负责存钱

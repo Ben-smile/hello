@@ -7,6 +7,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -20,7 +21,9 @@ public class InquiryController extends HttpServlet {
     public void service(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException{
         //0.处理中文字符集
         //1.接受请求发送过来的账号--->
-        String aname = request.getParameter("aname");
+        //String aname = request.getParameter("aname");
+        HttpSession session = request.getSession();
+        String aname = (String)session.getAttribute("aname");
         System.out.println("接收到了请求发送的名字"+aname);
         //2.调用业务层的方法 ---> 负责查询
         Float abalance = service.inquiry(aname);
