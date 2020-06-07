@@ -22,7 +22,7 @@ public class DepositController extends HttpServlet {
         String aname = (String)session.getAttribute("aname");
         String depositBalance = request.getParameter("depoistBalance");
         System.out.println("接收到了名字和存款金额:"+aname+"--"+depositBalance);
-        //调用业务层的方法负责存钱
+        // 调用业务层的方法负责存钱
         service.deposit(aname,new Float(depositBalance));
         //存款成功直接转发给welcome.jsp
         request.getRequestDispatcher("welcome.jsp").forward(request,response);
