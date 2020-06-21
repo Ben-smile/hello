@@ -14,7 +14,26 @@
         <url-pattern>/login</url-pattern>
     </servlet-mapping>
 
+    <!--查询所有种类-->
+    <servlet>
+        <servlet-name>selectAllKind</servlet-name>
+        <servlet-class>controller.SelectAllKindController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>selectAllKind</servlet-name>
+        <url-pattern>/selectAllKind</url-pattern>
+    </servlet-mapping>
 
+
+    <!--根据kid查询对应种类的所有商品-->
+    <servlet>
+        <servlet-name>selectCommodity</servlet-name>
+        <servlet-class>controller.SelectCommodityController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>selectCommodity</servlet-name>
+        <url-pattern>/selectCommodity</url-pattern>
+    </servlet-mapping>
 
 
 
