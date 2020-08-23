@@ -5,19 +5,8 @@
          version="4.0">
 
     <servlet>
-        <servlet-name>save</servlet-name>
-        <servlet-class>controller.SaveFileController</servlet-class>
-    </servlet>
-
-    <servlet-mapping>
-        <servlet-name>save</servlet-name>
-        <url-pattern>/save</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
         <servlet-name>download</servlet-name>
-        <servlet-class>controller.DownFileController</servlet-class>
-
+        <servlet-class>controller.DownloadController</servlet-class>
     </servlet>
 
     <servlet-mapping>
