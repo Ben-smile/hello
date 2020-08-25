@@ -4,22 +4,14 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
 
+    <!--配置文件就只剩下8行了 可以处理所以的do请求-->
     <servlet>
-        <servlet-name>atm</servlet-name>
-        <servlet-class>controller.AtmController</servlet-class>
+        <servlet-name>mvc</servlet-name>
+        <servlet-class>mymvc.DispatcherServlet</servlet-class>
     </servlet>
-
-
-    <!--购物系统 商品 种类 具体 种类展示的时候 两种不同的方式请求过来的 登录过来的 继续购物过来的-->
-    <!--如果这样的方式 至少配置会减少一半-->
     <servlet-mapping>
-        <servlet-name>atm</servlet-name>
-        <url-pattern>/login</url-pattern>
+        <servlet-name>mvc</servlet-name>
+        <url-pattern>*.do</url-pattern>
     </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>atm</servlet-name>
-        <url-pattern>/query</url-pattern>
-    </servlet-mapping>
-
 
 </web-app>
