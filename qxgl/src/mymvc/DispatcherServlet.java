@@ -246,8 +246,13 @@ public class  DispatcherServlet extends HttpServlet {
                         for(Field field : fields){
                             field.setAccessible(true);
                             Class fieldType = field.getType();
+                            if (fieldType != String.class && fieldType != int.class && fieldType != Integer.class)
+                                continue;
                             Constructor fieldContructor = fieldType.getConstructor(String.class);
-                            field.set(paramObj,fieldContructor.newInstance(request.getParameter(field.getName())));
+                            String value = request.getParameter(field.getName());
+                            if (value == null || "".equals(value))
+                                continue;
+                            field.set(paramObj,fieldContructor.newInstance(value));
                         }
                         finalParamValue[i] = paramObj;
                         //System.out.println("对象类型参数处理");

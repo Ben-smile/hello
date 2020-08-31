@@ -1,0 +1,38 @@
+body{
+    background-image:url('image/3.jpg');
+    background-repeat:no-repeat;
+    background-size:100% auto;
+    color: #008c8c;
+}
+
+
+#top{
+    text-align: center;
+    height: 15%;
+    border: 2px solid gray;
+    font-size: 25px;
+}
+
+#menuBox{
+
+    list-style: none;
+    cursor: pointer;
+}
+
+#left{
+    margin-top: 6px;
+    height: 84%;
+    width: 25%;
+    border: 2px solid gray;
+    float: left;
+    font-size: 25px;
+}
+
+#right{
+    margin-top: 6px;
+    height: 84%;
+    width: 74%;
+    border:  2px solid gray ;
+    float: right;
+    font-size: 25px;
+}
