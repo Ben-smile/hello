@@ -4,6 +4,7 @@ import com.domain.User;
 import orm.annotation.Delete;
 import orm.annotation.Insert;
 import orm.annotation.Select;
+import orm.annotation.Update;
 
 import java.util.List;
 import java.util.Map;
@@ -33,4 +34,11 @@ public interface UserDao {
     //删除一个用户
     @Delete("delete from t_user where uno=#{uno}")
     void deleteUser(Integer uno);
+
+    //查询一个用户
+    @Select("select * from t_user where uno=#{uno}")
+    User selectUser(Integer uno);
+
+    @Update("update t_user set uname=#{uname},truename=#{truename},sex=#{sex},age=#{age},phone=#{phone} where uno=#{uno}")
+    void updateUser(User user);
 }

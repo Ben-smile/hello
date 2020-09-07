@@ -45,4 +45,16 @@ public class UserService {
     public void deleteUser(Integer uno){
         dao.deleteUser(uno);
     }
+
+    //查询一条记录
+    public User selectUser(Integer uno){
+        User result = dao.selectUser(uno);
+
+        return result;
+    }
+
+    //修改一条信息
+    public void updateUser(User user){
+        dao.updateUser(user);
+    }
 }

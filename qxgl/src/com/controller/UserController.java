@@ -47,18 +47,34 @@ public class UserController {
 
     //新建用户
     @RequestMapping("createUser.do")
-    @ResponseBody
     public String createUser(User user){
-        System.out.println(user);
         service.addUser(user);
-        return "添加成功";
+        return "userList.do";
     }
 
     //删除用户
     @RequestMapping("deleteUser.do")
-    public void delete(@Param("uno")String uno){
+    public String delete(@Param("uno")String uno){
         Integer value = Integer.parseInt(uno);
         service.deleteUser(value);
+        return "userList.do";
+    }
+
+    //查询一条记录 并跳转到修改页面
+    @RequestMapping("selectUser.do")
+    public ModelAndView select(@Param("uno")String uno){
+        Integer value = Integer.parseInt(uno);
+        User user = service.selectUser(value);
+        ModelAndView mv = new ModelAndView();
+        mv.addAttribute("user",user);
+        mv.setViewName("updateUser.jsp");
+        return mv;
+    }
+
+    @RequestMapping("updateUser.do")
+    public String update(User user){
+        service.updateUser(user);
+        return "userList.do";
     }
 
 }

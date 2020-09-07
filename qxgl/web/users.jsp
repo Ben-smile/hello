@@ -12,7 +12,28 @@
         }
 
         function selectUser(uno) {
-            location.href='selectUser.do?uno'+uno;
+            location.href='selectUser.do?uno='+uno;
+        }
+
+        window.onload = function () {
+            var inputs = document.getElementsByTagName("input");
+            for (var i = 0;i<inputs.length;i++){
+                var input = inputs[i];
+                if (input.type == 'checkbox'){
+                    input.onclick = function () {
+                        var f = this.checked;
+                        for (var j = 0;j<inputs.length;j++ ){
+                            if (inputs[j].type == 'checkbox')
+                                inputs[j].checked = f;
+                        }
+                    }
+                    break;
+                }
+            }
+        }
+
+        function deleteUsers() {
+
         }
     </script>
 
@@ -25,11 +46,9 @@
         }
 
         .create{
-            padding-top: 25px ;
-            padding-bottom: 50px;
             font-size: 25px;
+            margin-bottom: 20px;
             text-align: center;
-            display: block;
         }
         h2{
             text-align: center;
@@ -41,9 +60,13 @@
 </head>
 <body>
     <h2>用户列表</h2>
-    <a href="insert.jsp" class="create">新建用户</a>
+    <div class="create">
+        <a href="insert.jsp" >新建用户</a>
+        <a href="javascript:deleteUsers()">批量删除</a>
+    </div>
     <table id="userBox" border="1">
         <tr>
+            <th><input type="checkbox"></th>
             <th>用户编号</th>
             <th>用户姓名</th>
             <th>用户密码</th>
@@ -58,6 +81,7 @@
                 System.out.println();
             %>
             <tr>
+                <td><input type="checkbox"></td>
                 <td>${user.uno}</td>
                 <td>${user.uname}</td>
                 <td>${user.upass}</td>
