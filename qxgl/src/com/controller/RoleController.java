@@ -30,6 +30,9 @@ public class RoleController {
         mv.addAttribute("page",page);
         mv.addAttribute("rows",rows);
         mv.addAttribute("maxPage",maxPage);
+        mv.addAttribute("rno",rno);
+        mv.addAttribute("rname",rname);
+        mv.addAttribute("description",description);
         mv.setViewName("roleList.jsp");
         return mv;
     }

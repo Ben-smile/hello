@@ -7,7 +7,7 @@ public class Menu {
     private String mname;
     private String mhref;
     private String mtarget;
-    private Menu parent;
+    private Integer pno;
     private String y11;
     private String y12;
 
@@ -16,16 +16,15 @@ public class Menu {
     public Menu() {
     }
 
-    public Menu(Integer mno, String mname, String mhref, String mtarget, Menu parent, String y11, String y12) {
+    public Menu(Integer mno, String mname, String mhref, String mtarget, Integer pno, String y11, String y12) {
         this.mno = mno;
         this.mname = mname;
         this.mhref = mhref;
         this.mtarget = mtarget;
-        this.parent = parent;
+        this.pno = pno;
         this.y11 = y11;
         this.y12 = y12;
     }
-
 
     public Integer getMno() {
         return mno;
@@ -59,12 +58,12 @@ public class Menu {
         this.mtarget = mtarget;
     }
 
-    public Menu getParent() {
-        return parent;
+    public Integer getPno() {
+        return pno;
     }
 
-    public void setParent(Menu parent) {
-        this.parent = parent;
+    public void setPno(Integer pno) {
+        this.pno = pno;
     }
 
     public String getY11() {
@@ -81,5 +80,19 @@ public class Menu {
 
     public void setY12(String y12) {
         this.y12 = y12;
+    }
+
+    @Override
+    public String toString() {
+        return "Menu{" +
+                "mno=" + mno +
+                ", mname='" + mname + '\'' +
+                ", mhref='" + mhref + '\'' +
+                ", mtarget='" + mtarget + '\'' +
+                ", pno=" + pno +
+                ", y11='" + y11 + '\'' +
+                ", y12='" + y12 + '\'' +
+                ", roles=" + roles +
+                '}';
     }
 }

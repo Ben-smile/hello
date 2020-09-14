@@ -6,7 +6,7 @@
 
     <style>
         body{
-            background-image:url('image/3.jpg');
+            background-image:url('image/5.jpg');
             background-repeat:no-repeat;
             background-size:100% auto;
             color: #008c8c;
@@ -63,7 +63,7 @@
                 <ul>
                     <li><span><a href="userList.do" target="right">用户管理</a></span></li>
                     <li><span><a href="roleList.do" target="right">角色管理</a></span></li>
-                    <li><span>菜单管理</span></li>
+                    <li><span><a href="menuList.jsp" target="right">菜单管理</a></span></li>
                 </ul>
             </li>
             <li>

@@ -9,7 +9,7 @@ import java.util.Map;
 
 public class RoleDaoImpl implements RoleDao {
 
-
+//这个类用来实现动态sql
     @Override
     public List<Role> findRoles(Map<String, Object> params) {
         SqlSession session = new SqlSession();

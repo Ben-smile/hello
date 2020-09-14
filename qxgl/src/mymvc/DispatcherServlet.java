@@ -195,7 +195,7 @@ public class  DispatcherServlet extends HttpServlet {
                 //System.out.println(paramAnnotation.value()+"参数处理");
                 //目的是为了获取请求传递的参数信息(当然注解value与请求name必须一致)
                 String requestValue = request.getParameter(paramAnnotation.value());
-                if(requestValue!=null) {//证明根据注解信息 接受到了请求的参数 做注入
+                if(requestValue!=null && !("".equals(requestValue))) {//证明根据注解信息 接受到了请求的参数 做注入
                     //获取参数类型
                     Class paramClazz = parameter.getType();
                     //分析参数类型
