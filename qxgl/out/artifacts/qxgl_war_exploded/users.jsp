@@ -137,7 +137,8 @@
                     <td>${user.phone}</td>
                     <td>
                         <a href="javascript:selectUser(${user.uno})">编辑</a>&nbsp|
-                        <a href="javascript:deleteUser(${user.uno})" >注销</a>
+                        <a href="javascript:deleteUser(${user.uno})" >注销</a>|
+                        <a href="assignedRoles.jsp?uno=${user.uno}&truename=${user.truename}" >分配角色</a>
                     </td>
                 </tr>
             </c:forEach>

@@ -41,4 +41,30 @@ public class RoleService {
 
         return maxPage;
     }
+
+    //查询还未有的角色
+    public List<Role> selectNotAddedRoles(Integer uno){
+        return dao.selectNotAddedRoles(uno);
+    }
+
+    public List<Role> selectAddedRoles(Integer uno){
+        return dao.selectAddedRoles(uno);
+    }
+
+    //修改user_role信息
+
+    public void updateUserAndRole(Integer uno,String params){
+        String[] rnos = params.split(",");
+        for (String rno:rnos){
+            Map<String,Integer> map = new HashMap<>();
+            map.put("uno",uno);
+            map.put("rno",Integer.parseInt(rno));
+            System.out.println(rno);
+
+        }
+    }
+
+    public void deleteUserAndRole(Integer uno){
+        dao.deleteUserAndRole(uno);
+    }
 }

@@ -47,4 +47,32 @@ public class RoleDaoImpl implements RoleDao {
         }
         return session.selectOne(sql.toString(),params,int.class);
     }
+
+    //从 user_role表中查出 所有 uno的rno 然后排除这些 rno 返回剩余的角色
+    public List<Role> selectNotAddedRoles(Integer uno){
+        SqlSession session = new SqlSession();
+        String sql = "select * from t_role where rno not in(select rno from t_user_role where uno=#{uno})";
+        return session.selectList(sql,uno,Role.class);
+    }
+
+    public List<Role> selectAddedRoles(Integer uno){
+        SqlSession session = new SqlSession();
+        String sql = "select * from t_role where rno in(select rno from t_user_role where uno=#{uno})";
+        return session.selectList(sql,uno,Role.class);
+    }
+
+    //修改user_role 信息
+
+    public void updateUserAndRole(Map<String,Integer> params){
+        SqlSession session = new SqlSession();
+        String sql = "insert into t_user_role values(#{uno},#{rno})";
+        session.insert(sql,params);
+    }
+
+    //删除
+    public void deleteUserAndRole(Integer uno){
+        SqlSession session = new SqlSession();
+        String sql = "delete from t_user_role where uno=#{uno}";
+        session.delete(sql,uno);
+    }
 }
