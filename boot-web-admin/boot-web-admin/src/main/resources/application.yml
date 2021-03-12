@@ -1,9 +1,0 @@
-spring:
-  banner:
-    image:
-      location: banner.txt
-
-  servlet:
-    multipart:
-      max-file-size: 10MB #文件上传大小限制
-      max-request-size: 100MB
